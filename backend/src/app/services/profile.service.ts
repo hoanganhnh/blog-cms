@@ -1,9 +1,12 @@
-import prisma from '../../prisma/prisma-client';
-import profileMapper from '../utils/profile.utils';
-import HttpException from '../models/http-exception.model';
-import { findUserIdByUsername } from './auth.service';
+import prisma from "../../../prisma/prisma-client";
+import profileMapper from "../utils/profile.utils";
+import HttpException from "../models/http-exception.model";
+import { findUserIdByUsername } from "./auth.service";
 
-export const getProfile = async (usernamePayload: string, usernameAuth?: string) => {
+export const getProfile = async (
+  usernamePayload: string,
+  usernameAuth?: string
+) => {
   const profile = await prisma.user.findUnique({
     where: {
       username: usernamePayload,
@@ -20,7 +23,10 @@ export const getProfile = async (usernamePayload: string, usernameAuth?: string)
   return profileMapper(profile, usernameAuth);
 };
 
-export const followUser = async (usernamePayload: string, usernameAuth: string) => {
+export const followUser = async (
+  usernamePayload: string,
+  usernameAuth: string
+) => {
   const { id } = await findUserIdByUsername(usernameAuth);
 
   const profile = await prisma.user.update({
@@ -42,7 +48,10 @@ export const followUser = async (usernamePayload: string, usernameAuth: string) 
   return profileMapper(profile, usernameAuth);
 };
 
-export const unfollowUser = async (usernamePayload: string, usernameAuth: string) => {
+export const unfollowUser = async (
+  usernamePayload: string,
+  usernameAuth: string
+) => {
   const { id } = await findUserIdByUsername(usernameAuth);
 
   const profile = await prisma.user.update({

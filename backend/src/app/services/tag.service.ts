@@ -1,5 +1,5 @@
-import prisma from '../../prisma/prisma-client';
-import { Tag } from '../models/tag.model';
+import prisma from "../../../prisma/prisma-client";
+import { Tag } from "../models/tag.model";
 
 const getTags = async (username?: string): Promise<string[]> => {
   const queries = [];
@@ -28,7 +28,7 @@ const getTags = async (username?: string): Promise<string[]> => {
     },
     orderBy: {
       articles: {
-        _count: 'desc',
+        _count: "desc",
       },
     },
     take: 10,

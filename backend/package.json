@@ -23,8 +23,8 @@
     "test": "jest --forceExit --detectOpenHandles"
   },
   "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} ./src/prisma/seed.ts",
-    "schema": "./src/prisma/schema.prisma"
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} ./prisma/seed.ts",
+    "schema": "./prisma/schema.prisma"
   },
   "keywords": [],
   "author": "",

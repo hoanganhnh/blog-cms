@@ -1,5 +1,5 @@
 import slugify from "slugify";
-import prisma from "../../prisma/prisma-client";
+import prisma from "../../../prisma/prisma-client";
 import HttpException from "../models/http-exception.model";
 import { findUserIdByUsername } from "./auth.service";
 import profileMapper from "../utils/profile.utils";
