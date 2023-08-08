@@ -1,0 +1,81 @@
+version: "3.7"
+
+services:
+  proxy:
+    image: traefik
+    labels:
+      - mkcert.services.traefik=''
+      - traefik.enable=true
+      - traefik.http.routers.traefik.rule=Host(`traefik`)
+      - traefik.http.routers.traefik.entrypoints=http,https
+      - traefik.http.routers.traefik.service=api@internal
+    volumes:
+      - ./traefik.yaml:/etc/traefik/traefik.yaml
+      - ./conf/traefik:/etc/traefik/dynamic
+      - letsencrypt-acme:/letsencrypt
+      - ssl-certs:/etc/cert
+      - ${DOCKER_SOCK:-/var/run/docker.sock}:/var/run/docker.sock:ro
+    environment:
+      VIRTUAL_HOST: traefik
+    # ports:
+    #     - 0.0.0.0:80:80
+    #     - 0.0.0.0:443:443
+    #     - 0.0.0.0:8080:8080
+    #     - 0.0.0.0:9200:9200
+    #     - 0.0.0.0:7900:7900
+    networks:
+      - proxy
+      - gateway
+    restart: &restart unless-stopped
+    container_name: proxy
+    security_opt:
+      - no-new-privileges:true
+    logging: &logging
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  mkcert:
+    image: rogerdz/mkcert
+    volumes:
+      - ssl-certs:/app/certs:rw
+      - ~/.mozilla/firefox:/root/.mozilla/firefox:rw
+      - ~/.pki/nssdb:/root/.pki/nssdb:rw
+      - ~/.local/share/mkcert:/app/ca:rw
+      - ${CA_STORE:-/usr/local/share/ca-certificates}:/usr/local/share/ca-certificates
+      - ${DOCKER_SOCK:-/var/run/docker.sock}:/var/run/docker.sock:ro
+      - ./conf/traefik:/traefik
+    network_mode: none
+    restart: *restart
+    container_name: mkcert
+    depends_on:
+      - proxy
+    logging: *logging
+
+  hosts:
+    image: rogerdz/hosts-local
+    environment:
+      - CONTAINER_NAME_IP=${CONTAINER_NAME_IP:-proxy}
+    volumes:
+      - ${DOCKER_SOCK:-/var/run/docker.sock}:/var/run/docker.sock:ro
+      - /etc/hosts:/hosts
+    network_mode: none
+    init: true
+    restart: *restart
+    container_name: hosts
+    depends_on:
+      - proxy
+    logging: *logging
+
+networks:
+  proxy:
+    driver: bridge
+    name: proxy
+  gateway:
+    driver: bridge
+    name: gateway
+
+volumes:
+  letsencrypt-acme:
+  ssl-certs:
+    name: ssl-certs
