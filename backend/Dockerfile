@@ -2,7 +2,7 @@
 FROM node:16.18-buster-slim as common-build-stage
 
 # install open ssl for prisma
-RUN apt-get update && apt-get install -y fuse3 openssl
+RUN apt-get update && apt-get install -y openssl
 
 COPY . ./app
 
