@@ -1,12 +1,11 @@
 import React from "react";
-import Link from "next/dist/client/link";
 
 const Footer = () => (
   <footer>
     <div className="container">
-      <Link href="/" className="logo-font" passHref>
-        <a>conduit</a>
-      </Link>
+      <a href="/" className="logo-font">
+        conduit
+      </a>
       <span className="attribution">Code &amp; design licensed under MIT.</span>
     </div>
   </footer>

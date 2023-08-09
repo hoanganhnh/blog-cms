@@ -23,7 +23,7 @@ services:
           - ${VIRTUAL_HOST}
     environment:
       VIRTUAL_HOST: ${VIRTUAL_HOST}
-      VIRTUAL_HOST_API: ${VIRTUAL_HOST}
+      VIRTUAL_HOST_FRONTEND: ${VIRTUAL_HOST}
     volumes:
       - ./nginx.conf:/etc/nginx/templates/default.conf.template
       - ssl-certs:/etc/nginx/ssl
@@ -44,29 +44,6 @@ services:
     init: true
     hostname: ${COMPOSE_PROJECT_NAME}-docker
     restart: unless-stopped
-    depends_on:
-      - db
-  db:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: blog
-      MYSQL_PASSWORD: blog
-      MYSQL_DATABASE: blog
-    ports:
-      - 3306:3306
-    volumes:
-      - db_data:/var/lib/mysql
-    networks:
-      - internal
-  adminer:
-    image: adminer:latest
-    environment:
-      ADMINER_DEFAULT_SERVER: db
-    ports:
-      - 89:8080
-    networks:
-      - internal
 networks:
   proxy:
     external: true
@@ -75,4 +52,3 @@ networks:
 volumes:
   ssl-certs:
     external: true
-  db_data:

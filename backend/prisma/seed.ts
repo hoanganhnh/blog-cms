@@ -6,11 +6,12 @@ import {
   randParagraph,
   randPassword,
   randWord,
-} from '@ngneat/falso';
-import { PrismaClient } from '@prisma/client';
-import { RegisteredUser } from '../app/models/registered-user.model';
-import { createUser } from '../app/services/auth.service';
-import { addComment, createArticle } from '../app/services/article.service';
+} from "@ngneat/falso";
+import { PrismaClient } from "@prisma/client";
+
+import { RegisteredUser } from "../src/app/models/registered-user.model";
+import { createUser } from "../src/app/services/auth.service";
+import { addComment, createArticle } from "../src/app/services/article.service";
 
 const prisma = new PrismaClient();
 
@@ -19,7 +20,7 @@ export const generateUser = async (): Promise<RegisteredUser> =>
     username: randFullName(),
     email: randEmail(),
     password: randPassword(),
-    image: 'https://api.realworld.io/images/demo-avatar.png',
+    image: "https://api.realworld.io/images/demo-avatar.png",
     demo: true,
   });
 
@@ -28,28 +29,32 @@ export const generateArticle = async (username: string) =>
     {
       title: randLine(),
       description: randParagraph(),
-      body: randLines({ length: 10 }).join(' '),
+      body: randLines({ length: 10 }).join(" "),
       tagList: randWord({ length: 4 }),
     },
-    username,
+    username
   );
 
 export const generateComment = async (username: string, slug: string) =>
   addComment(randParagraph(), slug, username);
 
 export const main = async () => {
-  const users = await Promise.all(Array.from({ length: 30 }, () => generateUser()));
-  users?.map(user => user);
+  const users = await Promise.all(
+    Array.from({ length: 30 }, () => generateUser())
+  );
+  users?.map((user) => user);
 
-  // eslint-disable-next-line no-restricted-syntax
-  for await (const user of users) {
+  for (const user of users) {
     const articles = await Promise.all(
-      Array.from({ length: 20 }, () => generateArticle(user.username)),
+      Array.from({ length: 20 }, () => generateArticle(user.username))
     );
 
-    // eslint-disable-next-line no-restricted-syntax
-    for await (const article of articles) {
-      await Promise.all(users.map(userItem => generateComment(userItem.username, article.slug)));
+    for (const article of articles) {
+      await Promise.all(
+        users.map((userItem) =>
+          generateComment(userItem.username, article.slug)
+        )
+      );
     }
   }
 };
