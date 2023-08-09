@@ -1,52 +1,38 @@
-# Blog app frontend
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting started
+## Getting Started
 
-You can view a live demo over at [https://next-realworld.now.sh/](https://next-realworld.now.sh/)
+First, run the development server:
 
-To get the frontend running locally:
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
-- Clone this repo
-- `npm install` to install all dependencies
-- `npm run dev` to start the local server
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Making requests to the backend API
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-For convenience, we have a live API server running at `https://conduit.productionready.io/api` for the application to make requests against. You can view [the API spec here](https://github.com/GoThinkster/productionready/blob/master/api) which contains all routes & responses for the server.
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The source code for the backend server (available for Node, Rails and Django) can be found in the [main RealWorld repo](https://github.com/gothinkster/realworld).
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-If you want to change the API URL to a local server, simply edit `lib/utils/constant.js` and change `SERVER_BASE_URL` to the local server's URL (i.e. `localhost:3000/api`)
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Functionality overview
+## Learn More
 
-The example application is a social blogging site (i.e. a Medium.com clone) called "Conduit". It uses a custom API for all requests, including authentication. You can view a live demo over at [https://next-realworld.now.sh/](https://next-realworld.now.sh/)
+To learn more about Next.js, take a look at the following resources:
 
-**General functionality:**
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-- Authenticate users via JWT (login/register pages + logout button on settings page)
-- CRU\* users (sign up & settings page - no deleting required)
-- CRUD Articles
-- CR\*D Comments on articles (no updating required)
-- GET and display paginated lists of articles
-- Favorite articles
-- Follow other users
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-**The general page breakdown looks like this:**
+## Deploy on Vercel
 
-- Home page (URL: /)
-  - List of tags
-  - List of articles pulled from either Feed, Global, or by Tag
-  - Pagination for list of articles
-- Sign in/Sign up pages (URL: /user/login, /user/register)
-  - Use JWT (store the token in localStorage)
-- Settings page (URL: /user/settings )
-- Editor page to create/edit articles (URL: /editor/new, /editor/article-slug-here)
-- Article page (URL: /article/article-slug-here)
-  - Delete article button (only shown to article's author)
-  - Render markdown from server client side
-  - Comments section at bottom of page
-  - Delete comment button (only shown to comment's author)
-- Profile page (URL: /profile/username-here, /profile/username-here?favorite=true)
-  - Show basic user info
-  - List of articles populated from author's created articles or author's favorite articles
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
