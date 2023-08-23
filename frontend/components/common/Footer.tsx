@@ -7,9 +7,11 @@ const Footer = () => (
         conduit
       </a>
       <span className="attribution">
-        An interactive learning project from{" "}
-        <a href="https://thinkster.io">Thinkster</a>. Code &amp; design licensed
-        under MIT.
+        Project from{" "}
+        <a href="https://github.com/hoanganhnh" target="_blank">
+          Hoang Anh
+        </a>
+        . Code &amp; design licensed under MIT.
       </span>
     </div>
   </footer>
