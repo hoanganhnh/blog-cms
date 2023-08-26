@@ -1,15 +1,21 @@
+// ** React Imports
 import { useEffect } from 'react'
+
+// ** Next Imports
 import { useRouter } from 'next/router'
+
+// ** Spinner Import
 import Spinner from 'src/@core/components/spinner'
 
+// ** Hook Imports
 import { useAuth } from 'src/hooks/useAuth'
 
 /**
  *  Set Home URL based on User Roles
  */
-const getHomeRoute = (role: string) => {
+export const getHomeRoute = (role: string) => {
   if (role === 'client') return '/acl'
-  else return '/home'
+  else return '/dashboards/crm'
 }
 
 const Home = () => {
@@ -17,13 +23,7 @@ const Home = () => {
   const auth = useAuth()
   const router = useRouter()
 
-  console.log(auth)
-
   useEffect(() => {
-    if (!router.isReady) {
-      return
-    }
-
     if (auth.user && auth.user.role) {
       const homeRoute = getHomeRoute(auth.user.role)
 

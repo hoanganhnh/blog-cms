@@ -57,7 +57,7 @@ const UserLayout = ({ children }: Props) => {
 
             // ** AppBar Content
             horizontalAppBarContent: () => (
-              <HorizontalAppBarContent settings={settings} saveSettings={saveSettings} />
+              <HorizontalAppBarContent hidden={hidden} settings={settings} saveSettings={saveSettings} />
             )
           }
         : {

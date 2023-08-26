@@ -1,7 +1,13 @@
+// ** React Imports
 import { createContext, useState, ReactNode, useEffect } from 'react'
+
+// ** MUI Imports
 import { PaletteMode, Direction } from '@mui/material'
 
+// ** ThemeConfig Import
 import themeConfig from 'src/configs/themeConfig'
+
+// ** Types Import
 import { Skin, AppBar, Footer, ThemeColor, ContentWidth, VerticalNavToggle } from 'src/@core/layouts/types'
 
 export type Settings = {
@@ -104,12 +110,14 @@ const storeSettings = (settings: Settings) => {
   window.localStorage.setItem('settings', JSON.stringify(initSettings))
 }
 
+// ** Create Context
 export const SettingsContext = createContext<SettingsContextValue>({
   saveSettings: () => null,
   settings: initialSettings
 })
 
 export const SettingsProvider = ({ children, pageSettings }: SettingsProviderProps) => {
+  // ** State
   const [settings, setSettings] = useState<Settings>({ ...initialSettings })
 
   useEffect(() => {

@@ -115,7 +115,7 @@ const Customizer = () => {
           }}
         >
           <Typography variant='h6' sx={{ fontWeight: 600, textTransform: 'uppercase' }}>
-            Theme Customizer
+            Viewer
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>Customize & Preview in Real Time</Typography>
           <IconButton
