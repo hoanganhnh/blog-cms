@@ -7,15 +7,14 @@ export type UserLayoutType = {
 
 export type UsersType = {
   id: number
-  role: string
+  role: 'admin' | 'author'
   email: string
-  status: string
+  status: 'inactive' | 'active'
   avatar: string
   company: string
   country: string
   contact: string
   fullName: string
   username: string
-  currentPlan: string
   avatarColor?: ThemeColor
 }

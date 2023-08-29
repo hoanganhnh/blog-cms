@@ -152,7 +152,7 @@ const SidebarAddUser = (props: SidebarAddUserType) => {
                   value={value}
                   label='Full Name'
                   onChange={onChange}
-                  placeholder='John Doe'
+                  placeholder='full name'
                   error={Boolean(errors.fullName)}
                 />
               )}
@@ -169,7 +169,7 @@ const SidebarAddUser = (props: SidebarAddUserType) => {
                   value={value}
                   label='Username'
                   onChange={onChange}
-                  placeholder='johndoe'
+                  placeholder='username'
                   error={Boolean(errors.username)}
                 />
               )}
@@ -187,7 +187,7 @@ const SidebarAddUser = (props: SidebarAddUserType) => {
                   value={value}
                   label='Email'
                   onChange={onChange}
-                  placeholder='johndoe@email.com'
+                  placeholder='example@email.com'
                   error={Boolean(errors.email)}
                 />
               )}
@@ -259,26 +259,6 @@ const SidebarAddUser = (props: SidebarAddUserType) => {
             >
               <MenuItem value='admin'>Admin</MenuItem>
               <MenuItem value='author'>Author</MenuItem>
-              <MenuItem value='editor'>Editor</MenuItem>
-              <MenuItem value='maintainer'>Maintainer</MenuItem>
-              <MenuItem value='subscriber'>Subscriber</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl fullWidth sx={{ mb: 6 }}>
-            <InputLabel id='plan-select'>Select Plan</InputLabel>
-            <Select
-              fullWidth
-              value={plan}
-              id='select-plan'
-              label='Select Plan'
-              labelId='plan-select'
-              onChange={e => setPlan(e.target.value)}
-              inputProps={{ placeholder: 'Select Plan' }}
-            >
-              <MenuItem value='basic'>Basic</MenuItem>
-              <MenuItem value='company'>Company</MenuItem>
-              <MenuItem value='enterprise'>Enterprise</MenuItem>
-              <MenuItem value='team'>Team</MenuItem>
             </Select>
           </FormControl>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>

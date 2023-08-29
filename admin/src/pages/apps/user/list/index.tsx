@@ -1,10 +1,5 @@
-// ** React Imports
-import { useState, useEffect, MouseEvent, useCallback, ReactElement } from 'react'
-
-// ** Next Import
+import { useState, useEffect, MouseEvent, useCallback, ReactElement, Fragment } from 'react'
 import Link from 'next/link'
-
-// ** MUI Imports
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Menu from '@mui/material/Menu'
@@ -145,7 +140,7 @@ const RowOptions = ({ id }: { id: number | string }) => {
   }
 
   return (
-    <>
+    <Fragment>
       <IconButton size='small' onClick={handleRowOptionsClick}>
         <DotsVertical />
       </IconButton>
@@ -181,7 +176,7 @@ const RowOptions = ({ id }: { id: number | string }) => {
           Delete
         </MenuItem>
       </Menu>
-    </>
+    </Fragment>
   )
 }
 
@@ -250,12 +245,12 @@ const columns = [
   {
     flex: 0.15,
     minWidth: 120,
-    headerName: 'Plan',
-    field: 'currentPlan',
+    headerName: 'Username',
+    field: 'username',
     renderCell: ({ row }: CellType) => {
       return (
         <Typography variant='subtitle1' noWrap sx={{ textTransform: 'capitalize' }}>
-          {row.currentPlan}
+          {row.username}
         </Typography>
       )
     }
@@ -290,7 +285,6 @@ const columns = [
 const UserList = () => {
   // ** State
   const [role, setRole] = useState<string>('')
-  const [plan, setPlan] = useState<string>('')
   const [value, setValue] = useState<string>('')
   const [status, setStatus] = useState<string>('')
   const [pageSize, setPageSize] = useState<number>(10)
@@ -305,11 +299,10 @@ const UserList = () => {
       fetchData({
         role,
         status,
-        q: value,
-        currentPlan: plan
+        q: value
       })
     )
-  }, [dispatch, plan, role, status, value])
+  }, [dispatch, role, status, value])
 
   const handleFilter = useCallback((val: string) => {
     setValue(val)
@@ -317,10 +310,6 @@ const UserList = () => {
 
   const handleRoleChange = useCallback((e: SelectChangeEvent) => {
     setRole(e.target.value)
-  }, [])
-
-  const handlePlanChange = useCallback((e: SelectChangeEvent) => {
-    setPlan(e.target.value)
   }, [])
 
   const handleStatusChange = useCallback((e: SelectChangeEvent) => {
@@ -351,29 +340,6 @@ const UserList = () => {
                     <MenuItem value=''>Select Role</MenuItem>
                     <MenuItem value='admin'>Admin</MenuItem>
                     <MenuItem value='author'>Author</MenuItem>
-                    <MenuItem value='editor'>Editor</MenuItem>
-                    <MenuItem value='maintainer'>Maintainer</MenuItem>
-                    <MenuItem value='subscriber'>Subscriber</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item sm={4} xs={12}>
-                <FormControl fullWidth>
-                  <InputLabel id='plan-select'>Select Plan</InputLabel>
-                  <Select
-                    fullWidth
-                    value={plan}
-                    id='select-plan'
-                    label='Select Plan'
-                    labelId='plan-select'
-                    onChange={handlePlanChange}
-                    inputProps={{ placeholder: 'Select Plan' }}
-                  >
-                    <MenuItem value=''>Select Plan</MenuItem>
-                    <MenuItem value='basic'>Basic</MenuItem>
-                    <MenuItem value='company'>Company</MenuItem>
-                    <MenuItem value='enterprise'>Enterprise</MenuItem>
-                    <MenuItem value='team'>Team</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -387,10 +353,8 @@ const UserList = () => {
                     label='Select Status'
                     labelId='status-select'
                     onChange={handleStatusChange}
-                    inputProps={{ placeholder: 'Select Role' }}
+                    inputProps={{ placeholder: 'Select Status' }}
                   >
-                    <MenuItem value=''>Select Role</MenuItem>
-                    <MenuItem value='pending'>Pending</MenuItem>
                     <MenuItem value='active'>Active</MenuItem>
                     <MenuItem value='inactive'>Inactive</MenuItem>
                   </Select>

@@ -12,7 +12,6 @@ import { DataGrid } from '@mui/x-data-grid'
 import { styled } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-import { SelectChangeEvent } from '@mui/material/Select'
 
 // ** Icons Imports
 import Laptop from 'mdi-material-ui/Laptop'
@@ -165,12 +164,12 @@ const columns = [
   {
     flex: 0.15,
     minWidth: 120,
-    headerName: 'Plan',
-    field: 'currentPlan',
+    headerName: 'Username',
+    field: 'username',
     renderCell: ({ row }: CellType) => {
       return (
         <Typography noWrap variant='subtitle1' sx={{ textTransform: 'capitalize' }}>
-          {row.currentPlan}
+          {row.username}
         </Typography>
       )
     }
@@ -210,7 +209,6 @@ const columns = [
 
 const UserList = () => {
   // ** State
-  const [plan, setPlan] = useState<string>('')
   const [value, setValue] = useState<string>('')
   const [pageSize, setPageSize] = useState<number>(10)
 
@@ -223,25 +221,20 @@ const UserList = () => {
       fetchData({
         role: '',
         q: value,
-        status: '',
-        currentPlan: plan
+        status: ''
       })
     )
-  }, [dispatch, plan, value])
+  }, [dispatch, value])
 
   const handleFilter = useCallback((val: string) => {
     setValue(val)
-  }, [])
-
-  const handlePlanChange = useCallback((e: SelectChangeEvent) => {
-    setPlan(e.target.value)
   }, [])
 
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
         <Card>
-          <TableHeader plan={plan} value={value} handleFilter={handleFilter} handlePlanChange={handlePlanChange} />
+          <TableHeader value={value} handleFilter={handleFilter} />
           <DataGrid
             autoHeight
             rows={store.data}
