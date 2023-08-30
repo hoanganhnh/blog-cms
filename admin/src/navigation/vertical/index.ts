@@ -43,10 +43,6 @@ const navigation = (): VerticalNavItemsType => {
           title: 'List',
           path: '/apps/user/list'
         },
-        {
-          title: 'View',
-          path: '/apps/user/view'
-        }
       ]
     },
     {

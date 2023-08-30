@@ -23,14 +23,9 @@ import UserViewSecurity from 'src/views/apps/user/view/UserViewSecurity'
 import UserViewConnection from 'src/views/apps/user/view/UserViewConnection'
 import UserViewNotification from 'src/views/apps/user/view/UserViewNotification'
 
-// ** Types
-import { InvoiceType } from 'src/types/apps/invoiceTypes'
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface UserViewRightProps {}
 
-interface Props {
-  invoiceData: InvoiceType[]
-}
-
-// ** Styled Tab component
 const Tab = styled(MuiTab)<TabProps>(({ theme }) => ({
   minHeight: 48,
   flexDirection: 'row',
@@ -40,8 +35,7 @@ const Tab = styled(MuiTab)<TabProps>(({ theme }) => ({
   }
 }))
 
-const UserViewRight = ({ invoiceData }: Props) => {
-  // ** State
+const UserViewRight = ({}: UserViewRightProps) => {
   const [value, setValue] = useState<string>('overview')
 
   const handleChange = (event: SyntheticEvent, newValue: string) => {
@@ -65,7 +59,7 @@ const UserViewRight = ({ invoiceData }: Props) => {
       </TabList>
       <Box sx={{ mt: 3 }}>
         <TabPanel sx={{ p: 0 }} value='overview'>
-          <UserViewOverview invoiceData={invoiceData} />
+          <UserViewOverview />
         </TabPanel>
         <TabPanel sx={{ p: 0 }} value='security'>
           <UserViewSecurity />

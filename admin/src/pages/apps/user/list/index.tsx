@@ -167,10 +167,6 @@ const RowOptions = ({ id }: { id: number | string }) => {
             </MenuItemLink>
           </Link>
         </MenuItem>
-        <MenuItem onClick={handleRowOptionsClose}>
-          <PencilOutline fontSize='small' sx={{ mr: 2 }} />
-          Edit
-        </MenuItem>
         <MenuItem onClick={handleDelete}>
           <DeleteOutline fontSize='small' sx={{ mr: 2 }} />
           Delete

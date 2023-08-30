@@ -1,30 +1,16 @@
-// ** React Imports
-import { useState, useEffect } from 'react'
-
-// ** Next Import
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-
-// ** MUI Imports
 import Grid from '@mui/material/Grid'
 import Alert from '@mui/material/Alert'
-
-// ** Third Party Components
 import axios from 'axios'
 
-// ** Types
-import { InvoiceType } from 'src/types/apps/invoiceTypes'
-import { UserLayoutType, UsersType } from 'src/types/apps/userTypes'
-
-// ** Demo Components Imports
+import type { UserLayoutType, UsersType } from 'src/types/apps/userTypes'
 import UserViewLeft from 'src/views/apps/user/view/UserViewLeft'
 import UserViewRight from 'src/views/apps/user/view/UserViewRight'
 
-type Props = UserLayoutType & {
-  invoiceData: InvoiceType[]
-}
+type Props = UserLayoutType
 
-const UserView = ({ id, invoiceData }: Props) => {
-  // ** State
+const UserView = ({ id }: Props) => {
   const [error, setError] = useState<boolean>(false)
   const [data, setData] = useState<null | UsersType>(null)
 
@@ -48,7 +34,7 @@ const UserView = ({ id, invoiceData }: Props) => {
           <UserViewLeft data={data} />
         </Grid>
         <Grid item xs={12} md={7} lg={8}>
-          <UserViewRight invoiceData={invoiceData} />
+          <UserViewRight />
         </Grid>
       </Grid>
     )
