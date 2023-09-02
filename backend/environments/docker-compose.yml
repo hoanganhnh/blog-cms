@@ -31,7 +31,7 @@ services:
     depends_on:
       - node
   node:
-    image: rogerdz/node:16
+    image: hoanganh2k1/node:16
     environment:
       UID: ${UID}
       GID: ${GID}
