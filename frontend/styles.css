@@ -30,3 +30,9 @@ img.lazyload:not([src]) {
     font-size: 15px;
   }
 }
+
+.home-page .banner {
+  background: #1877f2 !important;
+}
+
+@import "./styles/main.css";

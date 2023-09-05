@@ -10,6 +10,7 @@ import { usePageDispatch } from "../../lib/context/PageContext";
 import checkLogin from "../../lib/utils/checkLogin";
 import { SERVER_BASE_URL } from "../../lib/utils/constant";
 import storage from "../../lib/utils/storage";
+import { colors } from "constants/colors";
 
 const FAVORITED_CLASS = "btn btn-sm btn-primary";
 const NOT_FAVORITED_CLASS = "btn btn-sm btn-outline-primary";
@@ -132,13 +133,17 @@ const ArticlePreview = ({ article }) => {
                   }}
                   style={{
                     borderColor:
-                      hover && currentIndex === index ? "#5cb85c" : "initial",
+                      hover && currentIndex === index
+                        ? colors.primary.main
+                        : "initial",
                   }}
                 >
                   <span
                     style={{
                       color:
-                        hover && currentIndex === index ? "#5cb85c" : "inherit",
+                        hover && currentIndex === index
+                          ? colors.primary.main
+                          : "inherit",
                     }}
                     onClick={() => setPage(0)}
                   >

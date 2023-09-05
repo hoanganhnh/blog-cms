@@ -19,7 +19,7 @@ const Navbar = () => {
     <nav className="navbar navbar-light">
       <div className="container">
         <CustomLink className="navbar-brand" href="/" as="/">
-          <span onClick={handleClick}>Materialize</span>
+          <span onClick={handleClick}>Facepost</span>
         </CustomLink>
         <ul className="nav navbar-nav pull-xs-right">
           <li className="nav-item">

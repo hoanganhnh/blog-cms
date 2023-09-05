@@ -4,7 +4,7 @@ const Footer = () => (
   <footer>
     <div className="container">
       <a href="/" className="logo-font">
-        Materialize
+        Facepost
       </a>
       <span className="attribution">
         Project from{" "}
