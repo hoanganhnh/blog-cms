@@ -4,9 +4,10 @@ import axios from 'axios'
 
 import type { InvoiceType } from 'src/types/apps/invoiceTypes'
 import UserViewPage from 'src/views/apps/user/view/UserViewPage'
+import { findPostsById } from 'src/@fake-db/apps/post'
 
-const UserView = ({ id }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  return <UserViewPage id={id} />
+const UserView = ({ id, posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  return <UserViewPage id={id} articles={posts} />
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -24,9 +25,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }: GetStaticPropsContext) => {
+  const userId = Number(params?.id)
+  const posts = findPostsById(userId)
+
   return {
     props: {
-      id: params?.id
+      id: params?.id,
+      posts
     }
   }
 }

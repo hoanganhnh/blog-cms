@@ -5,6 +5,9 @@ export type Article = {
   title: string
   slug: string
   description: string
-  comments: Comment[]
-  favorited: boolean
+  body: string
+  comments?: Comment[]
+  favorited?: boolean
+  authorId?: number
+  likes?: number[]
 }

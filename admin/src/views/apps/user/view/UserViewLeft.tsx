@@ -73,7 +73,7 @@ const UserViewLeft = ({ data }: UserViewLeftProps) => {
             color={data.avatarColor as ThemeColor}
             sx={{ width: 120, height: 120, fontWeight: 600, mb: 4, fontSize: '3rem' }}
           >
-            {getInitials(data.fullName)}
+            {getInitials(data.username)}
           </CustomAvatar>
         )
       }
@@ -90,7 +90,7 @@ const UserViewLeft = ({ data }: UserViewLeftProps) => {
             <CardContent sx={{ pt: 15, display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
               {renderUserAvatar()}
               <Typography variant='h6' sx={{ mb: 4 }}>
-                {data.fullName}
+                {data.username}
               </Typography>
               <CustomChip
                 skin='light'
@@ -177,14 +177,6 @@ const UserViewLeft = ({ data }: UserViewLeftProps) => {
                   <Typography sx={{ mr: 2, fontWeight: 500, fontSize: '0.875rem' }}>Bio:</Typography>
                   <Typography variant='body2'>I'am Full stack developer</Typography>
                 </Box>
-                <Box sx={{ display: 'flex', mb: 2.7 }}>
-                  <Typography sx={{ mr: 2, fontWeight: 500, fontSize: '0.875rem' }}>Contact:</Typography>
-                  <Typography variant='body2'>+1 {data.contact}</Typography>
-                </Box>
-                <Box sx={{ display: 'flex' }}>
-                  <Typography sx={{ mr: 2, fontWeight: 500, fontSize: '0.875rem' }}>Country:</Typography>
-                  <Typography variant='body2'>{data.country}</Typography>
-                </Box>
               </Box>
             </CardContent>
 
@@ -210,9 +202,6 @@ const UserViewLeft = ({ data }: UserViewLeftProps) => {
                 </DialogContentText>
                 <form>
                   <Grid container spacing={6}>
-                    <Grid item xs={12} sm={6}>
-                      <TextField fullWidth label='Full Name' defaultValue={data.fullName} />
-                    </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
                         fullWidth
@@ -243,7 +232,7 @@ const UserViewLeft = ({ data }: UserViewLeftProps) => {
                       <TextField fullWidth label='TAX ID' defaultValue='Tax-8894' />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                      <TextField fullWidth label='Contact' defaultValue={`+1 ${data.contact}`} />
+                      <TextField fullWidth label='Bio' defaultValue={data.bio} />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormControl fullWidth>

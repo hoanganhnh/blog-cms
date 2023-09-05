@@ -22,9 +22,12 @@ import UserViewOverview from 'src/views/apps/user/view/UserViewOverview'
 import UserViewSecurity from 'src/views/apps/user/view/UserViewSecurity'
 import UserViewConnection from 'src/views/apps/user/view/UserViewConnection'
 import UserViewNotification from 'src/views/apps/user/view/UserViewNotification'
+import { Article } from 'src/types/common/article.type'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface UserViewRightProps {}
+interface UserViewRightProps {
+  articles: Article[]
+}
 
 const Tab = styled(MuiTab)<TabProps>(({ theme }) => ({
   minHeight: 48,
@@ -35,7 +38,7 @@ const Tab = styled(MuiTab)<TabProps>(({ theme }) => ({
   }
 }))
 
-const UserViewRight = ({}: UserViewRightProps) => {
+const UserViewRight = ({ articles }: UserViewRightProps) => {
   const [value, setValue] = useState<string>('overview')
 
   const handleChange = (event: SyntheticEvent, newValue: string) => {
@@ -59,7 +62,7 @@ const UserViewRight = ({}: UserViewRightProps) => {
       </TabList>
       <Box sx={{ mt: 3 }}>
         <TabPanel sx={{ p: 0 }} value='overview'>
-          <UserViewOverview />
+          <UserViewOverview articles={articles} />
         </TabPanel>
         <TabPanel sx={{ p: 0 }} value='security'>
           <UserViewSecurity />

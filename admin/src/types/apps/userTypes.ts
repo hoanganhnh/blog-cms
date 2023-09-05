@@ -1,8 +1,10 @@
 // ** Types
 import { ThemeColor } from 'src/@core/layouts/types'
+import { Article } from '../common/article.type'
 
 export type UserLayoutType = {
   id: string | undefined
+  articles: Article[]
 }
 
 export type UsersType = {
@@ -11,10 +13,8 @@ export type UsersType = {
   email: string
   status: 'inactive' | 'active'
   avatar: string
-  company: string
-  country: string
-  contact: string
-  fullName: string
   username: string
   avatarColor?: ThemeColor
+  bio?: string
+  demo?: boolean | number
 }

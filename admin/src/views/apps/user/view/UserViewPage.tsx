@@ -10,7 +10,7 @@ import UserViewRight from 'src/views/apps/user/view/UserViewRight'
 
 type Props = UserLayoutType
 
-const UserView = ({ id }: Props) => {
+const UserView = ({ id, articles }: Props) => {
   const [error, setError] = useState<boolean>(false)
   const [data, setData] = useState<null | UsersType>(null)
 
@@ -34,7 +34,7 @@ const UserView = ({ id }: Props) => {
           <UserViewLeft data={data} />
         </Grid>
         <Grid item xs={12} md={7} lg={8}>
-          <UserViewRight />
+          <UserViewRight articles={articles} />
         </Grid>
       </Grid>
     )
